@@ -21,6 +21,49 @@
 
 
     }
+
+
+
+    function getMakers($csvData) {
+        $header = $csvData[0];
+        $keyMaker = array_search('make', $header);
+        //$keyModell = array_search('model', $header);
+        
+        //$result = [];
+        if (!empty($csvData)) {
+            $makers = [];
+            $model = '';
+            $isHeader = true;
+            foreach($csvData as $idx => $data) {
+                if(!is_array($data)){
+                    continue;
+                }
+                /*if ($idx == 0) {
+                    continue
+                }*/
+                if ($isHeader) {
+                    $isHeader = false;
+                    continue;
+                }
+                if ($maker != $data[$idxMaker]){
+                    $maker = $data[$idxMaker];
+                }
+                /*
+                
+                if ($model != $data[$idxModel]) {
+                    $model = $data[$idxModel];
+                    $result[$maker][] = $model;
+                }
+                */
+                
+            } 
+            return $makers;
+    }
+
+
+
+
+    }
     //$csvData = getCsvData($fileName);
     /*     
     if (file_exists($fileName)) {
