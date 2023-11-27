@@ -13,19 +13,31 @@
     $header = $csvData[0];
     $keyMaker = array_search('make', $header);
     $keyModell = array_search('model', $header);
+    if(empty($csvData)){
+        echo "Nem található";
+        return false;
+    }
     $result = [];
     if (!empty($csvData)) {
         $maker = '';
         $model = '';
-        foreach($csvData as $idx => $line) {
-            if ($idx == 0) {
+        $isHeader = true;
+        foreach($csvData as $idx => $data) {
+            if(!is_array($data)){
+                continue;
+            }
+            /*if ($idx == 0) {
                 continue
+            }*/
+            if ($isHeader) {
+                $isHeader = false;
+                continue;
             }
-            if ($maker != $line[$idxMaker]){
-                $maker = $line[$idxMaker];
+            if ($maker != $data[$idxMaker]){
+                $maker = $data[$idxMaker];
             }
-            if ($model != $line[$idxModel]) {
-                $model = $line[$idxModel];
+            if ($model != $data[$idxModel]) {
+                $model = $data[$idxModel];
                 $result[$maker][] = $model;
             }
         } 

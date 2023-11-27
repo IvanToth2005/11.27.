@@ -2,18 +2,14 @@
 
     $fileName = 'car-db.csv'; 
 
-    function getCsvData($fileName, $withHeader = true){
+    function getCsvData($fileName){
 
         if (!file_exists($fileName)){
             echo "$filename nem található";
             return false;
         }
-        if ($withHeader) {
-            $lines[] = $header;
-        }
-        else {
-            $lines = [];
-        }
+        $csvFile = fopen($fileName, 'r')
+        $lines = [];
         while (! feof($csvFile)) {
             $line = fgetcsv($csvFile);
             $lines = $line;
