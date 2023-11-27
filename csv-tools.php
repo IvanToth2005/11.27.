@@ -31,7 +31,7 @@
         
         //$result = [];
         if (!empty($csvData)) {
-            $makers = [];
+            $maker = '';
             $model = '';
             $isHeader = true;
             foreach($csvData as $idx => $data) {

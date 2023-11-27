@@ -14,17 +14,29 @@
         echo "Nem található";
         return false;
     }
+    
+    
+    $mysqli = new mysqli("localhost","root",null,"cars");
+    $mysqli->query("TRUNCATE TABLE makers;");
+
+
+    if ($mysqli -> connect_errno) {
+        echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+        exit();
+      }
+    echo "Connected";
+    
     $makers = getMakers($csvData);
-    print_r($makers);
-    $mysqli = new mysqli("localhost","my_user","my_password","my_db");
-
 
     
-    
-
-
-    
-
+    foreach ($makers as $maker){
+        $mysqli->querry("INSERT INTO cars (name) VALUES ('$maker')");
+        echo "$maker\n";
+    }
+    $result = $mysqli->querry("SELECT COUNT(id) as cnt FROM cars;");
+    $row = $result->fetch_accoc();
+    echo "{$row['$cnt']} sor van;\n"
+    $mysqli->close();
 
 ?>
 
