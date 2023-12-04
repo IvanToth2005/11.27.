@@ -54,3 +54,12 @@ function delMaker($mysqli, $id) {
     $result = $mysqli->query("DELETE makers Where id=$id");
     return $result;
 }
+
+function getAllMakers($mysqli){
+    $result = $result->query("SELECT * FROM makers");
+    $makers = $result->fetch_all(MYSQLI_ASSOC);
+    return $makers;
+}
+
+
+

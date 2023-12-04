@@ -24,11 +24,21 @@
     echo "Connected";
     
     $makers = getMakers($csvData);
+    foreach ($makers as $maker) {
+        //$mysqli->query("INSERT INTO makers (name) VALUES ('$maker')");
+        $result = createMaker($mysqli, $maker);
+        if (!$result){
+            $errors[] = $maker;
+        }
+        echo "$maker\n";
+    }
     $result = insertMakers($mysqli, $makers, true);
     
     
-    $result = $mysqli->querry("SELECT COUNT(id) as cnt FROM cars;");
-    $row = $result->fetch_accoc();
+    //$result = $mysqli->querry("SELECT COUNT(id) as cnt FROM cars;");
+    //$row = $result->fetch_accoc();
+    $makers = getAllMakers($mysqli);
+    $cnt = count($makers);
     echo "{$row['$cnt']} sor van;\n"
     $mysqli->close();
 
