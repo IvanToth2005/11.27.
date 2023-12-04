@@ -18,4 +18,39 @@ function insertMaker($mysqli, $makers, $truncate = false){
     }
     return $result;
 
+
+}
+function createMaker($mysqli, $maker) {
+    $result = $mysqli->query("INSERT INTO makers (name) VALUES ('$maker')");
+    if (!$result) {
+        echo "Hiba történt";
+
+    }
+    return $result;
+}
+
+function updateMaker($mysqli, $data){
+    $result = $mysqli->query("UPDATE makers SET {$data['name']}");
+    if (!$result) {
+        echo "Hiba történt";
+        return $result;
+
+    }
+    $maker = getMakerByName($mysqli, $data['name']);
+    return $result;
+}
+
+
+
+function getMakerByName($mysqli, $data['name']){
+
+}
+function getMaker($mysqli, $id) {
+    $result = $result->query("SELECT * FROM makers WHERE id = $id");
+    $maker = $result->fetch_assoc();
+    return $maker;
+}
+function delMaker($mysqli, $id) {
+    $result = $mysqli->query("DELETE makers Where id=$id");
+    return $result;
 }
