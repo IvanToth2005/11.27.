@@ -2,6 +2,9 @@
 
 <?php
 
+
+
+
 function insertMaker($mysqli, $makers, $truncate = false){
     
     if ($truncate) {
@@ -20,14 +23,7 @@ function insertMaker($mysqli, $makers, $truncate = false){
 
 
 }
-function createMaker($mysqli, $maker) {
-    $result = $mysqli->query("INSERT INTO makers (name) VALUES ('$maker')");
-    if (!$result) {
-        echo "Hiba történt";
 
-    }
-    return $result;
-}
 
 function updateMaker($mysqli, $data){
     $result = $mysqli->query("UPDATE makers SET {$data['name']}");
